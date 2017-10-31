@@ -1,0 +1,17 @@
+{
+  "name": "realtale",
+  "version": "1.0.0",
+  "description": "Write short, anonymous tales about places you've been in real life.",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tom Douglas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "google-maps": "^3.2.1",
+    "vue": "^2.5.2"
+  }
+}
