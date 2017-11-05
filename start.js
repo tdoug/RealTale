@@ -8,6 +8,8 @@ var http = require('http').Server(app)
 var bodyParser = require('body-parser')
 
 app.use('/vue', express.static('node_modules/vue/dist'))
+app.use('/public/javascripts', express.static('javascripts'))
+app.use('/public/stylesheets', express.static('stylesheets'))
 app.use('/google_maps', express.static('node_modules/google-maps/lib'))
 app.use(express.static('public'))
 

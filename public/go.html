@@ -2,89 +2,7 @@
 <html>
 <head>
 	<title>RealTales</title>
-	<style>
-		body {
-			font-family: Georgia;
-			margin: 0;
-		}
-		#map {
-			position: absolute;
-			width:99%;
-			height:99%;
-		}
-		#app {
-			position: absolute;
-			z-index: 100;
-			width:20%;
-			top: 2%;
-  			height: 95%;
-  			margin-left: 2%;
-  			min-width: 200px;
-		}
-		#app #app_heading {
-			width: 100%;
-			text-align: center;
-		}
-		#app input#place {
-			width:100%;
-		}
-		#near_tales {
-			font-style: italic;
-			color: gray;
-			text-align:center;
-			font-size: 15px;
-		}
-		#write_tale {
-			position: absolute;
-			top: 2%;
-			margin-left: 43%;
-			margin-right: auto;
-			width: 55%;
-			height: 40%;
-			z-index: 100;
-		}
-		#write_area {
-			position: relative;
-			height:95%;
-			width: 100%;
-		}
-		button {
-			display: inline-block;
-			margin: 10px 0;
-		    padding: 6px 12px;
-		    margin-bottom: 0;
-		    width:100%;
-		    font-size: 14px;
-		    font-weight: 400;
-		    line-height: 1.42857143;
-		    text-align: center;
-		    white-space: nowrap;
-		    vertical-align: middle;
-		    -ms-touch-action: manipulation;
-		    touch-action: manipulation;
-		    cursor: pointer;
-		    -webkit-user-select: none;
-		    -moz-user-select: none;
-		    -ms-user-select: none;
-		    user-select: none;
-		    background-image: none;
-		    border: 1px solid transparent;
-		    border-radius: 4px;
-		    color: #fff;
-    		background-color: #5bc0de;
-    		border-color: #46b8da;
-		}
-		.window {
-			background-color: white;
-			border: 1px dashed;
-		}
-		.window_content {
-			margin: 25px;
-		}
-		::-webkit-input-placeholder {
-		   text-align: center;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
 </head>
 <body>
 	<div id="map"></div>
@@ -92,8 +10,9 @@
 		<div id="app" class="window">
 		  <div class="window_content">
 		  	<h3 id="app_heading">RealTales</h3>
-		  	<input type='text' width="20" id="place" placeholder="Type a place here" onchange="newPlace(this.value, 15)">
-		  	<button id="new_tale_button" v-on:click="writing = true">Write a Tale Here</button>
+		  	<input type='text' width="20" id="place" placeholder="Type a place here">
+		  	<button id="new_tale_button" v-on:click="writing = true">Write a Tale</button>
+		  	<p><hr /></p>
 		  	<p style='text-align: center'>Tales Near You:</p>
 		  	<p><hr /></p>
 		  	<div id='near_tales'>
@@ -101,43 +20,18 @@
 		  	</div>
 		  </div>
 		</div>
-		<div id="write_tale" class="window" v-if="writing">
+		<div id="write_tale_window" class="window" v-if="writing">
 			<div class="window_content">
-				<textarea id="write_area"></textarea>
+				<div id='write_tale_close' v-on:click="writing = false">[ X ]</div>
+				<textarea id="write_area" 
+				  placeholder="What happened here?  Don't be shy...tell us everything..."></textarea>
 				<button id="submit_tale_button" v-on:click="submitTale()">Save This Tale</button>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="/vue/vue.js"></script>
 	<script type="text/javascript" src="/google_maps/Google.min.js"></script>
-	<script type="text/javascript">
-		var map
-		var app = new Vue({
-		  el: '#container',
-		  data: {
-		    tales: 'No tales at this location.  You should write one!',
-		    writing: false
-		  }
-		})
-		function newPlace(place, zoom) {
-			var geocoder = new google.maps.Geocoder();
-
-			 geocoder.geocode( { 'address': place }, function(results, status) {
-		        if (status == google.maps.GeocoderStatus.OK) {
-		            map.setCenter(results[0].geometry.location)
-		            map.setZoom(zoom)
-		        } else {
-		            alert("Could not find location: " + location)
-		        }
-		    });
-		}
-		GoogleMapsLoader.KEY = "AIzaSyD09e53U71M5i9CS5dl6tEGOniCcRXXT_g"
-		GoogleMapsLoader.load(function(google) {
-			map = new google.maps.Map(document.getElementById('map'), {
-		        mapTypeId: google.maps.MapTypeId.ROADMAP
-		    })
-		    newPlace('Austin, TX', 10)
-		});
-	</script>
+	<script type="text/javascript" src="/javascripts/map.js"></script>
+	<script type="text/javascript" src="/javascripts/vue.js"></script>
 </body>
 </html>

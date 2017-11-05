@@ -1,0 +1,90 @@
+body {
+	font-family: Georgia;
+	margin: 0;
+	height: 100%;
+}
+#map {
+	position: absolute;
+	width:100%;
+	height:100%;
+}
+#app {
+	position: absolute;
+	z-index: 100;
+	width:20%;
+	top: 2%;
+	height: 55%;
+	margin-left: 2%;
+	min-width: 200px;
+}
+#app #app_heading {
+	width: 100%;
+	text-align: center;
+}
+#app input#place {
+	width:100%;
+}
+#near_tales {
+	font-style: italic;
+	color: gray;
+	text-align:center;
+	font-size: 15px;
+}
+#write_tale_window {
+	position: absolute;
+	top: 2%;
+	left: 25%;
+	margin-right: auto;
+	width: 70%;
+	height: 200px;
+	z-index: 100;
+}
+#write_tale_close {
+	position: absolute;
+	right: 4px;
+	top: 3px;
+	color: gray;
+	font-size: 10px;
+	cursor: pointer;
+}
+#write_area {
+	position: relative;
+	height: 110px;
+	width: 99%;
+}
+button {
+	display: inline-block;
+	margin: 10px 0;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    width:100%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+	background-color: #5bc0de;
+	border-color: #46b8da;
+}
+.window {
+	background-color: white;
+	border: 1px dashed;
+}
+.window_content {
+	margin: 25px;
+}
+::-webkit-input-placeholder {
+   text-align: center;
+}
