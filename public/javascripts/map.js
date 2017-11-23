@@ -1,13 +1,19 @@
-var place, autocomplete
+var address, autocomplete
 
 function newPlace(manual_place) {
     if (autocomplete === undefined)
       return false
 
-    manual_place != undefined ? place = manual_place :
-      place = autocomplete.getPlace().formatted_address
+    if (manual_place != undefined) {
+      address = manual_place
+    }
+    else {
+      app.place = autocomplete.getPlace().name
+      address = autocomplete.getPlace().formatted_address
+    }
+      
 	var geocoder = new google.maps.Geocoder()
-	 geocoder.geocode( { 'address': place }, function(results, status) {
+	 geocoder.geocode( { 'address': address }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location)
             map.setZoom(17)
