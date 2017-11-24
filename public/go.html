@@ -25,14 +25,15 @@
 			<div class="window_content">
 				<div id='write_tale_close' v-on:click="writing = false">[ X ]</div>
 				<p> {{ place }}</p>
-				<textarea id="write_area" 
+				<textarea id="write_area" v-model="write_area"
 				  placeholder="What happened here?  Don't be shy...tell us everything..."></textarea>
-				<button id="submit_tale_button" v-on:click="submitTale()">Save This Tale</button>
+				<button id="submit_tale_button" v-on:click="submitTale">Save This Tale</button>
 			</div>
 		</div>
 	</div>
 		<script type="text/javascript" src="/google_maps/Google.min.js"></script>
 	<script type="text/javascript" src="/vue/vue.js"></script>
+	<script type="text/javascript" src="/vue_resource/vue-resource.min.js"></script>
 	<script type="text/javascript" src="/javascripts/map.js"></script>
 	<script type="text/javascript" src="/javascripts/vue.js"></script>
 </body>

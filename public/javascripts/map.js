@@ -1,6 +1,7 @@
-var address, autocomplete
+var autocomplete
 
 function newPlace(manual_place) {
+    let address
     if (autocomplete === undefined)
       return false
 
