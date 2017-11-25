@@ -1,5 +1,6 @@
 var path = require('path')
 var fs = require('fs')
+const url = require('url')
 
 var express = require('express')
 
@@ -7,6 +8,7 @@ var app = express()
 var http = require('http').Server(app)
 var bodyParser = require('body-parser')
 
+var sequelize = require('./db')
 var tale = require('./models/tale')
 
 app.use('/vue', express.static('node_modules/vue/dist'))
@@ -29,17 +31,20 @@ app.post('/write_tale', function(req, res) {
 })
 
 app.get('/get_tales', function(req, res) {
- /*
-   "SELECT  id,
-                  (6371 * acos( cos( radians($lat) ) * cos( radians('lat') ) *
-                        cos( radians('lng') - radians($long)) +
-                        sin(radians($lat)) * sin(radians('lat')) )
-                  ) as distance
-    FROM  map_locations
-    HAVING  'distance' < 1
-    ORDER BY  id
-    LIMIT  25";
-   */
+  const url_parts = url.parse(req.url, true)
+  const queryString = url_parts.query
+
+  const lat = queryString.lat
+  const lon = queryString.lon
+  const query = 
+  `SELECT *, ACOS(SIN(:lat) * SIN(Lat)) + COS(:lat) * COS(Lat) * COS(:lon) - (Long)) ) * 6380 
+  AS distance FROM Table_tab WHERE ACOS( SIN(:lat) * SIN(Lat) 
+  + COS(:lat) * COS(Lat) * COS(:lon) - Long )) * 6380 < 10`
+  sequelize.query(query, 
+  	{ replacements: { lat: lat, lon: lon }, 
+  	type: sequelize.QueryTypes.SELECT }).then(tales => {
+  		res.send(tales)
+  	})
 })
 
 http.listen(3000, function() { console.log('listening')});

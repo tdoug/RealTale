@@ -24,6 +24,12 @@ var app = new Vue({
           this.writing = false
         }
       })
+    },
+    getTales: function(lat, lon) {
+      var req = this.$http.get('/get_tales?lat='+lat+'&lon='+lon).then(response => {
+        this.tales = response.body.tales
+        console.log(response)
+      })
     }
   }
 })

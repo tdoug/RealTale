@@ -18,6 +18,7 @@ function newPlace(manual_place) {
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location)
             map.setZoom(17)
+            app.getTales(results[0].geometry.location.lat(), results[0].geometry.location.lng())
         } else {
             alert("Could not find location: " + location)
         }
