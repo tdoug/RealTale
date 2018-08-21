@@ -37,9 +37,11 @@ app.get('/get_tales', function(req, res) {
   const lat = queryString.lat
   const lon = queryString.lon
   const query = 
-  `SELECT *, ACOS(SIN(:lat) * SIN(Lat)) + COS(:lat) * COS(Lat) * COS(:lon) - (Long)) ) * 6380 
-  AS distance FROM Table_tab WHERE ACOS( SIN(:lat) * SIN(Lat) 
-  + COS(:lat) * COS(Lat) * COS(:lon) - Long )) * 6380 < 10`
+  `SELECT *
+  FROM tales
+  WHERE (:lon > (:lon - 0.07) AND :lon < (:lon + 0.07))
+  AND (:lat > (:lat - 0.07) AND :lat < (:lat + 0.07))`
+  
   sequelize.query(query, 
   	{ replacements: { lat: lat, lon: lon }, 
   	type: sequelize.QueryTypes.SELECT }).then(tales => {

@@ -1,13 +1,23 @@
-# Use postgres/example user/password credentials
 version: '2'
 
 services:
-
+    web:
+        build: .
+        command: node /var/app/start.js
+        ports:
+           - "3000:3000"
+        volumes:
+            - .:/var/app
+        depends_on:
+          - db
+        environment:
+            DATABASE_HOST: db
     db:
         image: postgres
         restart: always
         environment:
             POSTGRES_USER: realtale
             POSTGRES_PASSWORD: pass
+            POSTGRES_DB: realtale
         ports:
             - 5432:5432

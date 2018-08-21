@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize('realtale', 'realtale', 'pass', {
-  host: 'localhost',
+  host: process.env.DATABASE_HOST,
   dialect: 'postgres',
 });
 
