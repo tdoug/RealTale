@@ -27,7 +27,10 @@ app.get('/', function(req, res) {
 app.post('/write_tale', function(req, res) {
   let new_tale = req.body
   tale.create({ content: new_tale.write_area, place_name: new_tale.place_name, 
-  	address: new_tale.address, lon: new_tale.lon, lat: new_tale.lat })
+  	address: new_tale.address, lon: new_tale.lon, lat: new_tale.lat }).then(tale => {
+      if(tale)
+        res.send(200)
+    })
 })
 
 app.get('/get_tales', function(req, res) {

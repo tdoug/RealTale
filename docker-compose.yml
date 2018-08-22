@@ -3,11 +3,11 @@ version: '2'
 services:
     web:
         build: .
-        command: node /var/app/start.js
+        command: nodemon /opt/app/ --watch
         ports:
            - "3000:3000"
         volumes:
-            - .:/var/app
+            - .:/opt/app
         depends_on:
           - db
         environment:

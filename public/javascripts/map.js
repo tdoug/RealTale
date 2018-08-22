@@ -24,7 +24,8 @@ function newPlace(manual_place) {
         }
     });
 }
-GoogleMapsLoader.KEY = "AIzaSyD09e53U71M5i9CS5dl6tEGOniCcRXXT_g"
+// this API key is restricted to localhost URLs
+GoogleMapsLoader.KEY = "AIzaSyBZTTWJDMmD91VQfPqWUCulSoXkADomahU"
 GoogleMapsLoader.LIBRARIES = ['places']
 GoogleMapsLoader.load(function(google) {
 	map = new google.maps.Map(document.getElementById('map'), {
