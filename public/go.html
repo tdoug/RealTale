@@ -17,7 +17,11 @@
 		  	<p style='text-align: center'>Tales Near You:</p>
 		  	<p><hr /></p>
 		  	<div id='near_tales'>
-		  		{{ tales }}
+					<div v-if="tales.length < 1">No tales exist!  <br />You should write one.</div>
+					<li v-for="tale in tales">
+						"{{ tale.content }}"<br />
+						@{{ tale.place_name }}
+					</li>
 		  	</div>
 		  </div>
 		</div>

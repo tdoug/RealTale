@@ -39,6 +39,7 @@ app.get('/get_tales', function(req, res) {
 
   const lat = queryString.lat
   const lon = queryString.lon
+  // this is horribly incorrect, but it works for testing
   const query = 
   `SELECT *
   FROM tales

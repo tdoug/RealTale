@@ -1,7 +1,7 @@
 var app = new Vue({
   el: '#container',
   data: {
-    tales: 'No tales at this location.  You should write one!',
+    tales: [],
     place: 'Austin, TX',
     writing: false,
     write_area: ''
@@ -19,7 +19,6 @@ var app = new Vue({
           },
           { emulateJSON: true }
       ).then(response => {
-        console.log(response)
         if (response.status === 200) {
           this.write_area = ''
           this.writing = false
@@ -28,7 +27,9 @@ var app = new Vue({
     },
     getTales: function(lat, lon) {
       var req = this.$http.get('/get_tales?lat='+lat+'&lon='+lon).then(response => {
-        this.tales = response.body.tales
+        if (response.status === 200) {
+          this.tales = response.body
+        }
       })
     }
   }
