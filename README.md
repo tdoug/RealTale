@@ -5,8 +5,7 @@ Write short, anonymous tales about places you've been in real life.
 Utilizes: NodeJS, Google Maps API, Vue, Docker, and PostgresSQL
 
 # Setup
-```docker-compose up```
-Visit http://localhost:3000
+```docker-compose up```, then visit: Visit http://localhost:3000
 
 # TODO
 1)  Make it so you can write a tale against the default location "Austin, TX"
